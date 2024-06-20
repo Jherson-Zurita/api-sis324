@@ -19,7 +19,7 @@ User.init({
     allowNull: false
   },
   role: {
-    type: DataTypes.ENUM('patient', 'doctor', 'assistant', 'admin'),
+    type: DataTypes.STRING,
     allowNull: false
   },
   roleId: {
