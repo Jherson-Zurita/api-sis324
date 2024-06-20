@@ -7,6 +7,27 @@ const Doctor = require('../models/Doctor');
 const Assistant = require('../models/Assistant');
 const Admin = require('../models/Admin');
 
+const createUser = async (req, res) => {
+  try {
+    const { email, password, role, adminId, doctorId, patientId, assistantId } = req.body;
+
+    const user = await User.create({
+      email,
+      password,
+      role,
+      adminId,
+      doctorId,
+      patientId,
+      assistantId
+    });
+
+    res.status(201).json(user);
+  } catch (error) {
+    console.error('Error al crear el usuario:', error);
+    res.status(500).json({ message: 'Error al crear el usuario' });
+  }
+};
+
 const getAllUsers = async (req, res) => {
   try {
     const users = await User.findAll();
@@ -101,6 +122,7 @@ const deleteUser = async (req, res) => {
 };
 
 module.exports = {
+  createUser,
   getAllUsers,
   getUserById,
   registerUser,
