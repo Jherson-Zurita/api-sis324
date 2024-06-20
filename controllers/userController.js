@@ -6,22 +6,13 @@ const Patient = require('../models/Patient');
 const Doctor = require('../models/Doctor');
 const Assistant = require('../models/Assistant');
 const Admin = require('../models/Admin');
+const userService = require('../services/userService');
 
-const createUser = async (req, res) => {
-  try {
-    const { email, password, role, roleId } = req.body;
-
-    const user = await User.create({
-      email,
-      password,
-      role,
-      roleId
-    });
-
+const createUser = async (req, res) => {  try {
+    const user = await userService.createUser(req.body);
     res.status(201).json(user);
-  } catch (error) {
-    console.error('Error al crear el usuario:', error);
-    res.status(500).json({ message: 'Error al crear el usuario' });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
   }
 };
 
