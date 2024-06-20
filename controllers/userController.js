@@ -9,16 +9,13 @@ const Admin = require('../models/Admin');
 
 const createUser = async (req, res) => {
   try {
-    const { email, password, role, adminId, doctorId, patientId, assistantId } = req.body;
+    const { email, password, role, roleId } = req.body;
 
     const user = await User.create({
       email,
       password,
       role,
-      adminId,
-      doctorId,
-      patientId,
-      assistantId
+      roleId
     });
 
     res.status(201).json(user);
