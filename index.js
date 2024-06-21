@@ -9,7 +9,7 @@ const assistantRoutes = require('./routes/assistants');
 const appointmentRoutes = require('./routes/appointments');
 const adminRoutes = require('./routes/admins');
 const userRoutes = require('./routes/users'); // Agrega la ruta de users
-// Importa las otras rutas según sea necesario
+const initializeData = require('./initData'); // Importa el script de inicialización
 
 const app = express();
 
@@ -31,8 +31,10 @@ app.use('/users', userRoutes); // Usa la ruta de users
 const PORT = process.env.PORT || 3000;
 
 sequelize.sync({ force: true }).then(() => {
-  app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
+  initializeData().then(() => {
+    app.listen(PORT, () => {
+      console.log(`Server is running on port ${PORT}`);
+    });
   });
 }).catch(err => {
   console.error('Unable to connect to the database:', err);
