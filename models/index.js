@@ -19,7 +19,7 @@ const Doctor = sequelize.define('Doctor', {
 const Patient = sequelize.define('Patient', {
   nombre: DataTypes.STRING,
   apellido: DataTypes.STRING,
-  fechanacimiento: DataTypes.DATE,
+  fechanacimiento: DataTypes.DATEONLY,
   direccion: DataTypes.STRING,
   telefono: DataTypes.STRING,
   email: DataTypes.STRING,
@@ -41,12 +41,12 @@ const User = sequelize.define('User', {
 });
 
 const Appointment = sequelize.define('Appointment', {
-  date: DataTypes.DATE,
+  date: DataTypes.DATEONLY,
   time: DataTypes.TIME,
   clientId: DataTypes.INTEGER,
   doctorId: DataTypes.INTEGER,
   status: DataTypes.STRING,
-  medicalInfo: DataTypes.STRING
+  medicalInfo: DataTypes.TEXT
 });
 
 module.exports = { Admin, Doctor, Patient, Assistant, User, Appointment };
