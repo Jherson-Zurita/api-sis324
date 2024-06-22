@@ -72,8 +72,17 @@ const initializeData = async () => {
 
     // Crear citas de ejemplo
     await Appointment.create({
+      date: '2024-06-21',
+      time: '10:00',
+      clientId: 1,
+      doctorId: 1,
+      status: 'pending',
+      medicalInfo: 'Patient complaining of headaches and fever.'
+    });
+
+    await Appointment.create({
       date: '2024-06-25',
-      time: '10:00:00',
+      time: '11:00',
       clientId: 1,
       doctorId: 1,
       status: 'pending',
